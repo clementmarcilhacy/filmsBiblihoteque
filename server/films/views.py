@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Film
 
@@ -57,11 +57,33 @@ def film_create_view(request):
     return render(request, 'films/film_create.html', context)
 
 def films_list_view(request):
-    obj = Film.objects.all()
-    context = {"object": obj}
+    queryset = Film.objects.all()
+    context = {"object_list": queryset}
     return render(request, 'films/films_list.html', context)
 
-def film_details_view(request):
-    obj = Film.objects.get(id=1)
+# def film_details_view(request, id):
+#     obj = Film.objects.get(id=1)
+#     context = {"object": obj}
+#     return render(request, 'films/film_details.html', context)
+
+def film_details_view(request, my_id):
+    #obj = Film.objects.get(id=my_id)
+    obj = get_object_or_404(Film, id=my_id)
     context = {"object": obj}
     return render(request, 'films/film_details.html', context)
+
+def film_delete_view(request, my_id):
+    obj = get_object_or_404(Film, id=my_id)
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('../../list')
+
+def film_update_view(request, my_id):
+    obj = get_object_or_404(Film, id=my_id)
+    form = FilmForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        print("modify film")
+        form.save()
+        return redirect('../../list')
+    context = {"form": form}
+    return render(request, 'films/film_create.html', context)

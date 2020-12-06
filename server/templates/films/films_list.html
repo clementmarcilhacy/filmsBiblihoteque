@@ -5,10 +5,13 @@
 <h4>Liste des films</h4>
 
 <ul class="list-group">
-  {% for film in object %}
+  {% for instance in object_list %}
   <li class="list-group-item">
-    <p>Title : {{ film.title }}</p>
-    <p>Year : {{ film.year }}</p>
+
+      <p>Id: {{ instance.id }}</p>
+      <p>Title : {{ instance.title }}</p>
+      <p>Year : {{ instance.year }}</p>
+      <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">Voir les détails</a>
   </li>
   {%  endfor %}
 </ul>

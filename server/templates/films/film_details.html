@@ -2,8 +2,22 @@
 
 {% block content %}
 
-<h4>Filmmmmmm</h4>
-<h5>Title : {{ object.title }}</h5>
-<h5>Year : {{ object.year }}</h5>
+<h4>Film details</h4>
+
+<div class="card" style="width: 20rem;">
+  <div class="card-body">
+    <h4 class="card-title">{{ object.title }}</h4>
+    <h5 class="card-subtitle mb-2 text-muted">Year : {{ object.year }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">imgUrl : {{ object.imgUrl }}</h6>
+    <p class="card-text">Description à ajouter ici</p>
+    <div class="btn-group btn-group-justified">
+      <form action="./delete/" method="POST"> {% csrf_token %}
+        <input type="submit" value="Supprimer" class="btn btn-danger">
+      </form>
+      <a href="./update/" class="btn btn-warning">Modifier</a>
+      <a href="../list" class="btn btn-success">Annuler</a>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

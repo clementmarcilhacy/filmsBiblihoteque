@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action='./create' method='POST'> {% csrf_token %}
+<form action='.' method='POST'> {% csrf_token %}
   <!-- <input type="text" name="title" placeholder="put your title here"> -->
   {{ form.as_p }}
   <input type="submit" value="Save" class="btn btn-primary">
