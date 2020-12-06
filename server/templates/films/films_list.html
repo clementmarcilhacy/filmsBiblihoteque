@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4>Liste des films</h4>
+
+<ul class="list-group">
+  {% for film in object %}
+  <li class="list-group-item">
+    <p>Title : {{ film.title }}</p>
+    <p>Year : {{ film.year }}</p>
+  </li>
+  {%  endfor %}
+</ul>
+
+{% endblock %}

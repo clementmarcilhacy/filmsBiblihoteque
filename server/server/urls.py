@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from films.views import film_details_view, film_create_view, films_list_view ,home_view #, about_view
 
 app_name = 'backend'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/hello/', views.hello, name='hello'),
+    path('home/', home_view, name='home'),
+    #path('about/', about_view, name='about'),
+    path('films/details', film_details_view),
+    path('films/create', film_create_view),
+    path('films/list', films_list_view),
 ]

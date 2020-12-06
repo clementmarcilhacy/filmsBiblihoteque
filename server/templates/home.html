@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% include navbar.html %}
+
+{% block content %}
+<h2>Bienvenue {{ request.user }}</h2>
+<a type="button" class="btn btn-primary" href="/films/create">Ajouter un film</a>
+{% endblock %}
